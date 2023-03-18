@@ -1,0 +1,39 @@
+{
+	"books": [
+		{
+			"isbn": "9780300267662",
+			"title": "Why Architecture Matters",
+			"appendixPage": "15"
+		},
+		{
+			"isbn": "9783110914672",
+			"title": "Reallexikon der deutschen Literaturwissenschaft",
+			"appendixPage": "27"
+		},
+		{
+			"isbn": "9783110914675",
+			"title": "The Death Penalty",
+			"appendixPage": "7"
+		},
+		{
+			"isbn": "9783110545982",
+			"title": "Qualitative Interviews",
+			"appendixPage": "33"
+		},
+		{
+			"isbn": "9780520392304",
+			"title": "Equality within Our Lifetimes",
+			"appendixPage": "19"
+		},
+		{
+			"isbn": "9780520392314",
+			"title": "A General Theory of Crime",
+			"appendixPage": "21"
+		},
+		{
+			"isbn": "9780300268478",
+			"title": "The Great New York Fire of 1776",
+			"appendixPage": "64"
+		}
+	]
+}
