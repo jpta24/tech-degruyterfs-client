@@ -231,7 +231,7 @@ input::placeholder {
 	.container {
 		order: 2;
 		width: 100%;
-		height: calc(100vh - 70px - 41px);
+		height: calc(100vh - 70px - 50px - 41px);
 		display: flex;
 		justify-content: center;
 	}
@@ -274,5 +274,23 @@ input::placeholder {
 
 	.bookData {
 		text-align: left;
+	}
+
+	.searchBox {
+		order: 2;
+		width: 100%;
+		height: 50px;
+	}
+
+	.searchBox-input {
+		width: 80%;
+	}
+
+	.seachedBooks-container {
+		position: absolute;
+		top: 55px;
+		right: 35px;
+		width: 80%;
+		max-height: calc(100vh - 300px);
 	}
 }
