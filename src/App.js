@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import axios from 'axios';
 
 import './App.css';
 
@@ -11,11 +12,23 @@ import Description from './components/Description';
 function App() {
 	const [book, setBook] = useState(null);
 	const [isMobile, setIsMobile] = useState(false);
+	const [bookToShow, setBookToShow] = useState(null);
+
+	const getBookInfo = (bookID) => {
+		axios
+			.get(`${process.env.REACT_APP_SERVER_URL}/api/book/${bookID}`)
+			.then((response) => {
+				setBookToShow(response.data);
+			})
+			.catch((error) => {
+				console.log({ error });
+			});
+	};
 
 	return (
 		<div className='App'>
 			<Header />
-			<SearchBox setBook={setBook} />
+			<SearchBox setBook={setBook} getBookInfo={getBookInfo} />
 			<Navbar />
 			<div className='container'>
 				<Library
@@ -23,9 +36,15 @@ function App() {
 					book={book}
 					isMobile={isMobile}
 					setIsMobile={setIsMobile}
+					getBookInfo={getBookInfo}
 				/>
 				{book && (
-					<Description setBook={setBook} book={book} isMobile={isMobile} />
+					<Description
+						setBook={setBook}
+						book={book}
+						isMobile={isMobile}
+						bookToShow={bookToShow}
+					/>
 				)}
 			</div>
 		</div>

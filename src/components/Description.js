@@ -1,40 +1,61 @@
+// import { useState, useEffect } from 'react';
+// import axios from 'axios';
+
 import { formatIsbn, formatAppendix, checkIsbn } from '../utils/functions';
 
-function Description({ book, setBook, isMobile }) {
-	const isIsbnValid = checkIsbn(book.isbn);
+function Description({ book, setBook, isMobile, bookToShow }) {
+	// const [bookToShow, setBookToShow] = useState(null);
 
-	return (
-		<div className='description'>
-			{isMobile && (
-				<span className='backBtn' onClick={() => setBook(null)}>
-					{`< Back`}
-				</span>
-			)}
+	// useEffect(() => {
+	// 	axios
+	// 		.get(`${process.env.REACT_APP_SERVER_URL}/api/book/${book._id}`)
+	// 		.then((response) => {
+	// 			setBookToShow(response.data);
+	// 		})
+	// 		.catch((error) => {
+	// 			console.log({ error });
+	// 		});
+	// 	// eslint-disable-next-line react-hooks/exhaustive-deps
+	// }, []);
 
-			<img
-				className='bookCover'
-				src={`/covers/${isIsbnValid ? book.isbn : 'default'}.jpg`}
-				alt='cover'
-			></img>
-			<div className='bookInformation'>
-				{isIsbnValid ? (
-					<>
-						<p className='bookTitle'>{book.title}</p>
-						<p className='bookData'>{`ISBN: ${formatIsbn(book.isbn)}`}</p>
-						<p className='bookData'>{`Appendix: ${formatAppendix(
-							book.appendixPage
-						)}`}</p>
-					</>
-				) : (
-					<>
-						<h2 className='bookTitle'>
-							The ISBN number entered is invalid. Please check it and try again.
-						</h2>
-					</>
+	if (bookToShow) {
+		const isIsbnValid = checkIsbn(bookToShow.isbn);
+		return (
+			<div className='description'>
+				{isMobile && (
+					<span className='backBtn' onClick={() => setBook(null)}>
+						{`< Back`}
+					</span>
 				)}
+
+				<img
+					className='bookCover'
+					src={isIsbnValid ? bookToShow.cover : `/covers/default.jpg`}
+					alt='cover'
+				></img>
+				<div className='bookInformation'>
+					{isIsbnValid ? (
+						<>
+							<p className='bookTitle'>{bookToShow.title}</p>
+							<p className='bookData'>{`ISBN: ${formatIsbn(
+								bookToShow.isbn
+							)}`}</p>
+							<p className='bookData'>{`Appendix: ${formatAppendix(
+								bookToShow.appendixPage
+							)}`}</p>
+						</>
+					) : (
+						<>
+							<h2 className='bookTitle'>
+								The ISBN number entered is invalid. Please check it and try
+								again.
+							</h2>
+						</>
+					)}
+				</div>
 			</div>
-		</div>
-	);
+		);
+	}
 }
 
 export default Description;

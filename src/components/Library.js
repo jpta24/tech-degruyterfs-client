@@ -3,7 +3,7 @@ import axios from 'axios';
 
 import { formatIsbn, listenerResize } from '../utils/functions';
 
-function Library({ book, setBook, isMobile, setIsMobile }) {
+function Library({ book, setBook, isMobile, setIsMobile, getBookInfo }) {
 	const classLibrary = book && isMobile ? 'no-Library' : 'library';
 
 	useEffect(() => {
@@ -30,20 +30,20 @@ function Library({ book, setBook, isMobile, setIsMobile }) {
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
-	const getPagination = (pag) => {
-		axios
-			.get(`${process.env.REACT_APP_SERVER_URL}/api/books/pagination/${pag}`)
-			.then((response) => {
-				setListBooks({
-					...listBooks,
-					list: response.data.list,
-					pagination: pag,
-				});
-			})
-			.catch((error) => {
-				console.log({ error });
-			});
-	};
+	// const getPagination = (pag) => {
+	// 	axios
+	// 		.get(`${process.env.REACT_APP_SERVER_URL}/api/books/pagination/${pag}`)
+	// 		.then((response) => {
+	// 			setListBooks({
+	// 				...listBooks,
+	// 				list: response.data.list,
+	// 				pagination: pag,
+	// 			});
+	// 		})
+	// 		.catch((error) => {
+	// 			console.log({ error });
+	// 		});
+	// };
 
 	return (
 		<div className={classLibrary}>
@@ -57,6 +57,7 @@ function Library({ book, setBook, isMobile, setIsMobile }) {
 							key={elemBook._id}
 							onClick={() => {
 								setBook(elemBook.isbn);
+								getBookInfo(elemBook._id);
 							}}
 						>
 							<span>{formatIsbn(elemBook.isbn)}</span>
