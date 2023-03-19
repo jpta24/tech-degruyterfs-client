@@ -1,8 +1,9 @@
 import { useState, useEffect } from 'react';
+import axios from 'axios';
 
 import { formatIsbn, listenerResize } from '../utils/functions';
 
-function Library({ books, book, setBook, isMobile, setIsMobile }) {
+function Library({ book, setBook, isMobile, setIsMobile }) {
 	const classLibrary = book && isMobile ? 'no-Library' : 'library';
 
 	useEffect(() => {
@@ -10,44 +11,59 @@ function Library({ books, book, setBook, isMobile, setIsMobile }) {
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
-	const numberBooks = books.books.length;
+	const [listBooks, setListBooks] = useState(null);
 
-	const initialState = numberBooks < 4 ? null : true;
+	useEffect(() => {
+		axios
+			.get(`${process.env.REACT_APP_SERVER_URL}/api/books/initial`)
+			.then((response) => {
+				setListBooks({
+					list: response.data.list,
+					total: response.data.total,
+					pagination: 1,
+					totalPag: Math.ceil(response.data.total / 10),
+				});
+			})
+			.catch((error) => {
+				console.log({ error });
+			});
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, []);
 
-	const [isCollapsed, setIsCollapsed] = useState(initialState);
-
-	const sliceA =
-		numberBooks < 4 || !isCollapsed || !isMobile ? books.books.length : 3;
+	const getPagination = (pag) => {
+		axios
+			.get(`${process.env.REACT_APP_SERVER_URL}/api/books/pagination/${pag}`)
+			.then((response) => {
+				setListBooks({
+					...listBooks,
+					list: response.data.list,
+					pagination: pag,
+				});
+			})
+			.catch((error) => {
+				console.log({ error });
+			});
+	};
 
 	return (
 		<div className={classLibrary}>
-			{books.books.slice(0, sliceA).map((elemBook) => {
-				return (
-					<span
-						className={`isbn-number ${
-							book && elemBook.isbn === book.isbn && 'isbn-active'
-						}`}
-						key={elemBook.isbn}
-						onClick={() => {
-							setBook(elemBook);
-						}}
-					>
-						<span>{formatIsbn(elemBook.isbn)}</span>
-						<span style={{ marginLeft: '30px' }}>{'>'}</span>
-					</span>
-				);
-			})}
-			{isMobile &&
-				isCollapsed !== null &&
-				(isCollapsed ? (
-					<span className='showBtn' onClick={() => setIsCollapsed(false)}>
-						show more...
-					</span>
-				) : (
-					<span className='showBtn' onClick={() => setIsCollapsed(true)}>
-						show less...
-					</span>
-				))}
+			{listBooks &&
+				listBooks.list.map((elemBook) => {
+					return (
+						<span
+							className={`isbn-number ${
+								book && elemBook.isbn === book.isbn && 'isbn-active'
+							}`}
+							key={elemBook._id}
+							onClick={() => {
+								setBook(elemBook.isbn);
+							}}
+						>
+							<span>{formatIsbn(elemBook.isbn)}</span>
+							<span style={{ marginLeft: '30px' }}>{'>'}</span>
+						</span>
+					);
+				})}
 		</div>
 	);
 }
