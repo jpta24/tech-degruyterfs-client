@@ -8,7 +8,7 @@
 
 .header {
 	order: 1;
-	width: 50%;
+	width: 25%;
 	display: flex;
 	align-items: center;
 	height: 70px;
@@ -28,8 +28,8 @@
 }
 
 .navbar {
-	order: 2;
-	width: 50%;
+	order: 3;
+	width: 25%;
 	display: flex;
 	align-items: center;
 	justify-content: flex-end;
@@ -57,7 +57,7 @@
 }
 
 .container {
-	order: 3;
+	order: 4;
 	width: 100%;
 	display: flex;
 	flex-direction: row;
@@ -144,6 +144,75 @@
 	padding: 14px 0px 5px 17px;
 	text-align: left;
 	align-self: flex-start;
+}
+
+.searchBox {
+	display: flex;
+	order: 2;
+	width: 50%;
+	background-color: #000000;
+	align-items: center;
+	position: relative;
+}
+
+.seachaBox-container {
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
+	width: 100%;
+}
+
+.searchBox-input {
+	width: 50%;
+	padding: 5px;
+	border-radius: 5px;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	-ms-border-radius: 5px;
+	-o-border-radius: 5px;
+}
+
+input,
+input::placeholder {
+	font-family: Montserrat;
+	font-size: 16px;
+	font-weight: 400;
+	padding: 3px 6px;
+}
+
+.searchBoxIcon {
+	color: #ffffff;
+	font-size: 18px;
+	font-weight: bolder;
+	margin: 0px 10px;
+}
+
+.seachedBooks-container {
+	position: absolute;
+	top: 75px;
+	right: 35px;
+	width: 60%;
+	max-height: calc(100vh - 200px);
+	overflow: auto;
+	background-color: #ffffff;
+	padding: 10px;
+	border: 1px solid #999;
+	border-radius: 5px;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	-ms-border-radius: 5px;
+	-o-border-radius: 5px;
+}
+
+.seachedBook-item {
+	font-family: Montserrat;
+	font-size: 15px;
+	font-weight: 400;
+	margin-bottom: 5px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	cursor: pointer;
 }
 
 @media (max-width: 600px) {
