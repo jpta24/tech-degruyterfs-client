@@ -12,7 +12,7 @@ function Library({ book, setBook, isMobile, setIsMobile, getBookInfo }) {
 	}, []);
 
 	const [listBooks, setListBooks] = useState(null);
-
+console.log(listBooks);
 	useEffect(() => {
 		axios
 			.get(`${process.env.REACT_APP_SERVER_URL}/api/books/initial`)
@@ -29,7 +29,6 @@ function Library({ book, setBook, isMobile, setIsMobile, getBookInfo }) {
 			});
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
-	// console.log(listBooks.pagination < 4 ? 1 : listBooks.pagination - 1);
 	const getPagination = (pag) => {
 		axios
 			.get(`${process.env.REACT_APP_SERVER_URL}/api/books/pagination/${pag}`)
@@ -78,26 +77,6 @@ function Library({ book, setBook, isMobile, setIsMobile, getBookInfo }) {
 				: listBooks.pagination >= listBooks.totalPag - 1
 				? listBooks.totalPag
 				: listBooks.pagination + 1);
-		// pagSpot1 =
-		// 	listBooks.pagination <= 2
-		// 		? 1
-		// 		: listBooks.pagination-1 === listBooks.totalPag - 2
-		// 		? listBooks.totalPag - 2
-		// 		: listBooks.pagination - 1;
-		// pagSpot2 =
-		// 	listBooks.totalPag > 1 &&
-		// 	(listBooks.pagination <= 2
-		// 		? 2
-		// 		: listBooks.pagination === listBooks.totalPag - 1
-		// 		? listBooks.totalPag - 1
-		// 		: listBooks.pagination);
-		// pagSpot3 =
-		// 	listBooks.totalPag > 2 &&
-		// 	(listBooks.pagination <= 2
-		// 		? 3
-		// 		: listBooks.pagination === listBooks.totalPag
-		// 		? listBooks.totalPag
-		// 		: listBooks.pagination + 1);
 		pagSpot4 =
 			pagSpot3 !== listBooks.totalPag ? `...${listBooks.totalPag}` : '';
 	}
