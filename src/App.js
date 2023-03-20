@@ -37,6 +37,7 @@ function App() {
 					isMobile={isMobile}
 					setIsMobile={setIsMobile}
 					getBookInfo={getBookInfo}
+					bookToShow={bookToShow}
 				/>
 				{book && (
 					<Description

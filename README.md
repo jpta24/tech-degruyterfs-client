@@ -1,70 +1,66 @@
-# Getting Started with Create React App
+# Technical Challenge De Gruyter
+The project is an updated version with added features to the initial challenge.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+[https://github.com/jpta24/Tech-DeGruyter-client]
 
-## Available Scripts
+ It has been converted from a frontend-only project to a full-stack application with a Node.js Express.js server, MongoDB database, and Mongoose connection. The data displayed is randomly generated and does not correspond to actual book covers, ISBNs, or titles, and is used for practical purposes only. 
+ 
+ The frontend is deployed on Netlify: [https://techdegruyterfs.netlify.app/]
+ 
+ and the server is deployed on the Cycli.sh platform: [https://rose-swallow-tie.cyclic.app] (Please note that the server is hosted on a shared platform and may go to sleep after 30 minutes of inactivity. If you experience any delays or issues, please allow some time for the server to restart before retrying your request. Thank you for your patience and understanding)
 
-In the project directory, you can run:
+New features include an input for searching books by ISBN or name, pagination for navigating the book library with requests and responses containing only the necessary data, and the use of Axios for making HTTP requests.
 
-### `npm start`
+The web page displays a list of available ISBNs from a JSON file, along with book information such as the cover, ISBN, title, and appendix page. If the ISBN is invalid, the web page displays a default image and an error message. Each ISBN item in the list is clickable and displays the corresponding book cover image. The web page has a responsive design for optimal viewing on different screen sizes and follows the UX design provided by the client.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+![Screenshoot](https://res.cloudinary.com/dwtnqtdcs/image/upload/v1679273989/degruyterfs_rs8mfr.png)
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Technologies
+- React.js: JavaScript library for building user interfaces
+- CSS: Styling language for web development
+- Git: Version control system for tracking changes in code
+- GitHub: Web-based platform for hosting and sharing code repositories
+- Visual Studio Code: Code editor for developing web applications
+- Node.js: JavaScript runtime environment for running JavaScript on the server-side
+- Express.js: Web application framework for Node.js
+- MongoDB: NoSQL document-oriented database program
+- Mongoose: MongoDB object modeling for Node.js
+- Axios: Promise-based HTTP client for making HTTP requests.
 
-### `npm test`
+## Features
+- Display a list of available ISBNs from a JSON file
+- Display book information (Cover, ISBN, title, and appendix)
+- Validate ISBN format 
+- Show default image and error message if no book cover image found for ISBN
+- Clickable ISBN items to view book details
+- Responsive design for optimal viewing on different screen sizes
+- Followed UX design provided by client
+- Deployed to a web server for public access.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Installation
+- Clone the repository.
+- Navigate to the project directory in your terminal.
+- Run npm install to install the dependencies.
 
-### `npm run build`
+## Usage
+- Run npm start to start the development server.
+- Open http://localhost:3000 in your browser to view the project.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### EXERCISE 2
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+The output of this code is that it displays all the console.log statements simultaneously, as the setTimeout is the same for all iterations (1000ms). To resolve the issue and obtain the desired output, we need to multiply the time (1000ms) for each iteration i, and we will get each console.log every second until it finish the whole loop.
 
-### `npm run eject`
+```
+function timer(i) {
+  setTimeout(function(){
+    console.log(i);
+  }, 1000 * i);
+}
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+for (var i = 0; i < 10; i++) {
+  timer(i);
+}
+```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+here is link to CodePen to see it working: [https://codepen.io/jpta24/pen/oNPMxNy?editors=0012]

@@ -3,16 +3,15 @@ import axios from 'axios';
 
 import { formatIsbn, listenerResize } from '../utils/functions';
 
-function Library({ book, setBook, isMobile, setIsMobile, getBookInfo }) {
+function Library({ book, setBook, isMobile, setIsMobile, getBookInfo, bookToShow }) {
 	const classLibrary = book && isMobile ? 'no-Library' : 'library';
-
+console.log(book);
 	useEffect(() => {
 		listenerResize(setIsMobile);
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
 	const [listBooks, setListBooks] = useState(null);
-console.log(listBooks);
 	useEffect(() => {
 		axios
 			.get(`${process.env.REACT_APP_SERVER_URL}/api/books/initial`)
@@ -84,12 +83,12 @@ console.log(listBooks);
 	return (
 		<div className={classLibrary}>
 			<div>
-				{listBooks &&
+				{listBooks  &&
 					listBooks.list.map((elemBook) => {
 						return (
 							<span
 								className={`isbn-number ${
-									book && elemBook.isbn === book.isbn && 'isbn-active'
+									bookToShow && elemBook.isbn === bookToShow.isbn && 'isbn-active'
 								}`}
 								key={elemBook._id}
 								onClick={() => {
